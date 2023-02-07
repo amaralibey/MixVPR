@@ -8,7 +8,7 @@ This is the official repo for WACV 2023 paper: **MixVPR: Feature Mixing for Visu
 
 GSV-Cities framework (https://github.com/amaralibey/gsv-cities) has been used for training all models.
 
-Coming very soon...
+Weights coming very soon...
 
 ## Bibtex
 
