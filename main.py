@@ -243,7 +243,7 @@ if __name__ == '__main__':
         backbone_arch='resnet50',
         pretrained=True,
         layers_to_freeze=2,
-        layers_to_crop=[], # 4 crops the last resnet layer, 3 crops the 3rd, ...etc
+        layers_to_crop=[4], # 4 crops the last resnet layer, 3 crops the 3rd, ...etc
         
         #---- Aggregator
         # agg_arch='CosPlace',
