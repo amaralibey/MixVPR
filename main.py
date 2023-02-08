@@ -246,9 +246,9 @@ if __name__ == '__main__':
         layers_to_crop=[], # 4 crops the last resnet layer, 3 crops the 3rd, ...etc
         
         #---- Aggregator
-        agg_arch='CosPlace',
-        agg_config={'in_dim': 2048,
-                    'out_dim': 2048},
+        # agg_arch='CosPlace',
+        # agg_config={'in_dim': 2048,
+        #             'out_dim': 2048},
         # agg_arch='GeM',
         # agg_config={'p': 3},
         
@@ -256,15 +256,15 @@ if __name__ == '__main__':
         # agg_config={'in_channels': 2048,
         #             'out_channels': 2048},
 
-        # agg_arch='MixVPR',
-        # agg_config={'in_channels' : 1024,
-        #          'in_h' : 20,
-        #          'in_w' : 20,
-        #          'out_channels' : 1024,
-        #          'mix_depth' : 4,
-        #          'dropout' : 0.1,
-        #          'mlp_ratio' : 1,
-        #          'row_out' : 4},
+        agg_arch='MixVPR',
+        agg_config={'in_channels' : 1024,
+                 'in_h' : 20,
+                 'in_w' : 20,
+                 'out_channels' : 1024,
+                 'mix_depth' : 4,
+                 'dropout' : 0.1,
+                 'mlp_ratio' : 1,
+                 'row_out' : 4},
         
         #---- Train hyperparameters
         lr=0.05,
