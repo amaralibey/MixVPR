@@ -57,6 +57,7 @@ Code to load the pretrained weights is as follows:
 ```
 from main import VPRModel
 
+# Note that images must be resized to 320x320
 model = VPRModel(backbone_arch='resnet50', 
                  layers_to_crop=[4],
                  agg_arch='MixVPR',
