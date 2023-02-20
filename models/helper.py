@@ -67,41 +67,8 @@ def get_aggregator(agg_arch='ConvAP', agg_config={}):
     
     elif 'mixvpr' in agg_arch.lower():
         assert 'in_channels' in agg_config
-        assert 'in_channels' in agg_config
+        assert 'out_channels' in agg_config
         assert 'in_h' in agg_config
         assert 'in_w' in agg_config
-        assert 'out_channels' in agg_config
         assert 'mix_depth' in agg_config
-        assert 'dropout' in agg_config
-        assert 'mlp_ratio' in agg_config
-        assert 'row_out' in agg_config
         return aggregators.MixVPR(**agg_config)
-    
-def print_nb_params(m):
-    """Prints the numbe of trainable parameters in the model
-
-    Args:
-        m (nn.Module): PyTorch model
-    """
-    model_parameters = filter(lambda p: p.requires_grad, m.parameters())
-    params = sum([np.prod(p.size()) for p in model_parameters])
-    print(f'Trainable parameters: {params/1e6:.3}M')
-    
-    
-def main():
-    import torch
-    
-    x = torch.randn(1, 3, 224, 224) #random image
-    # backbone = get_backbone(backbone_arch='resnet50')
-    backbone = get_backbone(backbone_arch='resnet50')
-    agg = get_aggregator('cosplace', {'in_dim':backbone.out_channels, 'out_dim':512})
-    # agg = get_aggregator('GeM')
-    print_nb_params(backbone)
-    print_nb_params(agg)
-    
-    backbone_output = backbone(x)
-    agg_output = agg(backbone_output)
-    print(f'output shape: {agg_output.shape}')
-    
-if __name__ == '__main__':
-    main()

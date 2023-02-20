@@ -75,7 +75,6 @@ class GSVCitiesDataModule(pl.LightningDataModule):
         self.train_transform = T.Compose([
             T.Resize(image_size, interpolation=T.InterpolationMode.BILINEAR),
             T.RandAugment(num_ops=3, interpolation=T.InterpolationMode.BILINEAR),
-            # T.ColorJitter(brightness=0.2, saturation=0.2, contrast=0.2, hue=0.2),
             T.ToTensor(),
             T.Normalize(mean=self.mean_dataset, std=self.std_dataset),
         ])

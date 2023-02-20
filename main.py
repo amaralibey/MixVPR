@@ -93,6 +93,10 @@ class VPRModel(pl.LightningModule):
             optimizer = torch.optim.AdamW(self.parameters(), 
                                         lr=self.lr, 
                                         weight_decay=self.weight_decay)
+        elif self.optimizer.lower() == 'adam':
+            optimizer = torch.optim.AdamW(self.parameters(), 
+                                        lr=self.lr, 
+                                        weight_decay=self.weight_decay)
         else:
             raise ValueError(f'Optimizer {self.optimizer} has not been added to "configure_optimizers()"')
         scheduler = lr_scheduler.MultiStepLR(optimizer, milestones=self.milestones, gamma=self.lr_mult)
@@ -220,6 +224,7 @@ class VPRModel(pl.LightningModule):
             
             
 if __name__ == '__main__':
+    pl.utilities.seed.seed_everything(seed=190223, workers=True)
     
     datamodule = GSVCitiesDataModule(
         batch_size=120,
@@ -260,20 +265,19 @@ if __name__ == '__main__':
         agg_config={'in_channels' : 1024,
                  'in_h' : 20,
                  'in_w' : 20,
-                 'out_channels' : 1024,
+                 'out_channels' : 512,
                  'mix_depth' : 4,
-                 'dropout' : 0.1,
                  'mlp_ratio' : 1,
-                 'row_out' : 4},
+                 'out_rows' : 4}, # the output dim will be (out_rows * out_channels)
         
         #---- Train hyperparameters
-        lr=0.05,
-        optimizer='sgd', # or adamw
-        weight_decay=1e-3,
+        lr=0.0002, # 0.0002 for adam, 0.05 or sgd (needs to change according to batch size)
+        optimizer='adam', # sgd, adamw
+        weight_decay=0, # 0.001 for sgd and 0 for adam,
         momentum=0.9,
         warmpup_steps=650,
-        milestones=[5, 10, 15],
-        lr_mult=1/3,
+        milestones=[5, 15, 20],
+        lr_mult=0.3,
         
         #----- Loss functions
         # example: ContrastiveLoss, TripletMarginLoss, MultiSimilarityLoss,
@@ -295,8 +299,6 @@ if __name__ == '__main__':
         save_top_k=3,
         mode='max',)
 
-    # pl.utilities.seed.seed_everything(seed=42, workers=True)
-    
     #------------------
     # we instanciate a trainer
     trainer = pl.Trainer(
@@ -310,7 +312,7 @@ if __name__ == '__main__':
         callbacks=[checkpoint_cb],# we only run the checkpointing callback (you can add more)
         reload_dataloaders_every_n_epochs=1, # we reload the dataset to shuffle the order
         log_every_n_steps=20,
-        # fast_dev_run=True # uncomment if you only run a mini train and validation loop (no checkpointing).
+        # fast_dev_run=True # uncomment or dev mode (only runs a one iteration train and validation, no checkpointing).
     )
 
     # we call the trainer, we give it the model and the datamodule
