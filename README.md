@@ -19,7 +19,7 @@ All models have been trained on GSV-Cities (https://github.com/amaralibey/gsv-ci
     <th rowspan="2">Output<br>dimension</th>
     <th colspan="3">Pitts250k-test</th>
     <th colspan="3">Pitts30k-test</th>
-    <th colspan="3">MapillarySLS-val</th>
+    <th colspan="3">MSLS-val</th>
     <th rowspan="2">DOWNLOAD<br></th>
   </tr>
   <tr>
@@ -47,7 +47,35 @@ All models have been trained on GSV-Cities (https://github.com/amaralibey/gsv-ci
     <td>88.2</td>
     <td>93.1</td>
     <td>94.3</td>
-    <td><a href="https://drive.google.com/file/d/11rxwsx6aUn7CwRyGxvFOWpAmUxniwREN/">LINK</a></td>
+    <td><a href="https://drive.google.com/file/d/1vuz3PvnR7vxnDDLQrdHJaOA04SQrtk5L/view?usp=share_link">LINK</a></td>
+  </tr>
+ <tr>
+    <td>ResNet50</td>
+    <td>512</td>
+    <td>93.2</td>
+    <td>97.9</td>
+    <td>98.6</td>
+    <td>90.7</td>
+    <td>95.5</td>
+    <td>96.3</td>
+    <td>84.1</td>
+    <td>91.8</td>
+    <td>93.7</td>
+    <td><a href="https://drive.google.com/file/d/1khiTUNzZhfV2UUupZoIsPIbsMRBYVDqj/view?usp=share_link">LINK</a></td>
+  </tr>
+<tr>
+    <td>ResNet50</td>
+    <td>128</td>
+    <td>88.7</td>
+    <td>95.8</td>
+    <td>97.4</td>
+    <td>87.8</td>
+    <td>94.3</td>
+    <td>95.7</td>
+    <td>78.5</td>
+    <td>88.2</td>
+    <td>90.4</td>
+    <td><a href="https://drive.google.com/file/d/1DQnefjk1hVICOEYPwE4-CZAZOvi1NSJz/view?usp=share_link">LINK</a></td>
   </tr>
 </tbody>
 </table>
@@ -70,7 +98,7 @@ model = VPRModel(backbone_arch='resnet50',
                              'out_rows' : 4},
                 )
 
-state_dict = torch.load('./LOGS/resnet50_MixVPR_4096.ckpt')
+state_dict = torch.load('./LOGS/resnet50_MixVPR_4096_channels(1024)_rows(4).ckpt')
 model.load_state_dict(state_dict)
 model.eval()
 ```

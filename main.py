@@ -226,6 +226,8 @@ class VPRModel(pl.LightningModule):
 if __name__ == '__main__':
     pl.utilities.seed.seed_everything(seed=190223, workers=True)
     
+    
+    
     datamodule = GSVCitiesDataModule(
         batch_size=120,
         img_per_place=4,
@@ -263,20 +265,20 @@ if __name__ == '__main__':
 
         agg_arch='MixVPR',
         agg_config={'in_channels' : 1024,
-                 'in_h' : 20,
-                 'in_w' : 20,
-                 'out_channels' : 512,
-                 'mix_depth' : 4,
-                 'mlp_ratio' : 1,
-                 'out_rows' : 4}, # the output dim will be (out_rows * out_channels)
+                'in_h' : 20,
+                'in_w' : 20,
+                'out_channels' : 1024,
+                'mix_depth' : 4,
+                'mlp_ratio' : 1,
+                'out_rows' : 4}, # the output dim will be (out_rows * out_channels)
         
         #---- Train hyperparameters
-        lr=0.0002, # 0.0002 for adam, 0.05 or sgd (needs to change according to batch size)
-        optimizer='adam', # sgd, adamw
-        weight_decay=0, # 0.001 for sgd and 0 for adam,
+        lr=0.05, # 0.0002 for adam, 0.05 or sgd (needs to change according to batch size)
+        optimizer='sgd', # sgd, adamw
+        weight_decay=0.001, # 0.001 for sgd and 0 for adam,
         momentum=0.9,
         warmpup_steps=650,
-        milestones=[5, 15, 20],
+        milestones=[5, 10, 15],
         lr_mult=0.3,
         
         #----- Loss functions
@@ -307,7 +309,7 @@ if __name__ == '__main__':
 
         num_sanity_val_steps=0, # runs a validation step before stating training
         precision=16, # we use half precision to reduce  memory usage
-        max_epochs=25,
+        max_epochs=20,
         check_val_every_n_epoch=1, # run validation every epoch
         callbacks=[checkpoint_cb],# we only run the checkpointing callback (you can add more)
         reload_dataloaders_every_n_epochs=1, # we reload the dataset to shuffle the order
