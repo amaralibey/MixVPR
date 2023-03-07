@@ -1,6 +1,6 @@
 import numpy as np
-from . import aggregators
-from . import backbones
+from models import aggregators
+from models import backbones
 
 
 def get_backbone(backbone_arch='resnet50',

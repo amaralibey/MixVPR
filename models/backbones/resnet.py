@@ -40,22 +40,20 @@ class ResNet(nn.Module):
                 'facebookresearch/semi-supervised-ImageNet1K-models', model_name)
         else:
             if 'resnext50' in model_name:
-                self.model = torchvision.models.resnext50_32x4d(
-                    pretrained=weights)
+                self.model = torchvision.models.resnext50_32x4d(weights=weights)
             elif 'resnet50' in model_name:
                 self.model = torchvision.models.resnet50(weights=weights)
             elif '101' in model_name:
-                self.model = torchvision.models.resnet101(pretrained=weights)
+                self.model = torchvision.models.resnet101(weights=weights)
             elif '152' in model_name:
-                self.model = torchvision.models.resnet152(pretrained=weights)
+                self.model = torchvision.models.resnet152(weights=weights)
             elif '34' in model_name:
-                self.model = torchvision.models.resnet34(pretrained=weights)
+                self.model = torchvision.models.resnet34(weights=weights)
             elif '18' in model_name:
                 # self.model = torchvision.models.resnet18(pretrained=False)
                 self.model = torchvision.models.resnet18(weights=weights)
             elif 'wide_resnet50_2' in model_name:
-                self.model = torchvision.models.wide_resnet50_2(
-                    pretrained=weights)
+                self.model = torchvision.models.wide_resnet50_2(weights=weights)
             else:
                 raise NotImplementedError(
                     'Backbone architecture not recognized!')

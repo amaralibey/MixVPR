@@ -225,9 +225,7 @@ class VPRModel(pl.LightningModule):
             
 if __name__ == '__main__':
     pl.utilities.seed.seed_everything(seed=190223, workers=True)
-    
-    
-    
+        
     datamodule = GSVCitiesDataModule(
         batch_size=120,
         img_per_place=4,
@@ -278,9 +276,9 @@ if __name__ == '__main__':
         weight_decay=0.001, # 0.001 for sgd and 0 for adam,
         momentum=0.9,
         warmpup_steps=650,
-        milestones=[5, 10, 15],
+        milestones=[5, 10, 15, 25, 45],
         lr_mult=0.3,
-        
+
         #----- Loss functions
         # example: ContrastiveLoss, TripletMarginLoss, MultiSimilarityLoss,
         # FastAPLoss, CircleLoss, SupConLoss,
@@ -309,7 +307,7 @@ if __name__ == '__main__':
 
         num_sanity_val_steps=0, # runs a validation step before stating training
         precision=16, # we use half precision to reduce  memory usage
-        max_epochs=20,
+        max_epochs=80,
         check_val_every_n_epoch=1, # run validation every epoch
         callbacks=[checkpoint_cb],# we only run the checkpointing callback (you can add more)
         reload_dataloaders_every_n_epochs=1, # we reload the dataset to shuffle the order
