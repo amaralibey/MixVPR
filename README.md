@@ -14,7 +14,7 @@ This is the official repo for WACV 2023 paper "**MixVPR: Feature Mixing for Visu
 This paper introduces MixVPR, a novel all-MLP feature aggregation method that addresses the challenges of large-scale Visual Place Recognition, while remaining practical for real-world scenarios with strict latency requirements. The technique leverages feature maps from pre-trained backbones as a set of global features, and integrates a global relationship between them through a cascade of feature mixing, eliminating the need for local or pyramidal aggregation. MixVPR achieves new state-of-the-art performance on multiple large-scale benchmarks, while being significantly
 more efficient in terms of latency and parameter count compared to existing methods.
 
-[[WACV ](https://openaccess.thecvf.com/content/WACV2023/html/Ali-bey_MixVPR_Feature_Mixing_for_Visual_Place_Recognition_WACV_2023_paper.html)] [[ArXiv](https://arxiv.org/abs/2303.02190)]
+[[WACV OpenAccess](https://openaccess.thecvf.com/content/WACV2023/html/Ali-bey_MixVPR_Feature_Mixing_for_Visual_Place_Recognition_WACV_2023_paper.html)] [[ArXiv](https://arxiv.org/abs/2303.02190)]
 
 ![architecture](image/README/1678217709949.png)
 
