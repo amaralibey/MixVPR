@@ -121,7 +121,7 @@ model.eval()
 
 ```
 @inproceedings{ali2023mixvpr,
-  title={MixVPR: Feature Mixing for Visual Place Recognition},
+  title={{MixVPR}: Feature Mixing for Visual Place Recognition},
   author={Ali-bey, Amar and Chaib-draa, Brahim and Gigu{\`e}re, Philippe},
   booktitle={Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision},
   pages={2998--3007},
